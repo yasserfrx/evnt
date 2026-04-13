@@ -48,17 +48,18 @@ export default function CheckGuest() {
 
     try {
       setUpdating(true);
-      const { error } = await supabase
+      setError(null);
+      const { error: updateError } = await supabase
         .from('guests')
         .update({ checked_in: true })
         .eq('id', id);
 
-      if (error) throw error;
+      if (updateError) throw updateError;
       
       setGuest({ ...guest, checked_in: true });
     } catch (err: any) {
       console.error('Error updating guest:', err);
-      alert('Erreur lors de la validation: ' + err.message);
+      setError('Erreur lors de la validation: ' + (err.message || 'Erreur inconnue'));
     } finally {
       setUpdating(false);
     }

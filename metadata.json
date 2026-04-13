@@ -1,0 +1,5 @@
+{
+  "name": "Staff Guest Scanner",
+  "description": "A QR code scanner for staff to check in guests using Supabase.",
+  "requestFramePermissions": ["camera"]
+}
